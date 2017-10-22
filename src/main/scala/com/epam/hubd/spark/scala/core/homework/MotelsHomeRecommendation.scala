@@ -4,6 +4,8 @@ import com.epam.hubd.spark.scala.core.homework.domain.{BidItem, EnrichedItem}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
+import scala.collection.mutable.ListBuffer
+
 object MotelsHomeRecommendation {
 
   val ERRONEOUS_DIR: String = "erroneous"
@@ -78,12 +80,62 @@ object MotelsHomeRecommendation {
 }
 
   def getErroneousRecords(rawBids: RDD[List[String]]): RDD[String] = {
-    return rawBids.filter(x => x(2).slice(0,6) == "ERROR_").map(x => x.reduce((x, y) => x+","+y))
+    return rawBids
+      .filter(x => x(2).slice(0,6) == "ERROR_")
+      .map(x => (x.slice(1,3), 1))
+      .reduceByKey((x, y) => x+y)
+      .map(x => (x._1 :+ x._2.toString()).mkString(","))
   }
 
-  def getExchangeRates(sc: SparkContext, exchangeRatesPath: String): Map[String, Double] = ???
+  def getExchangeRates(sc: SparkContext, exchangeRatesPath: String): Map[String, Double] = {
+    return sc.textFile(exchangeRatesPath)
+      .map(x => {
+        val l = x.split(",")
+        (l(0),l(3).toDouble)
+      })
+      .collectAsMap()
+      .toMap // To *immutable* map. Freaking Scala.
+  }
 
-  def getBids(rawBids: RDD[List[String]], exchangeRates: Map[String, Double]): RDD[BidItem] = ???
+  def getBids(rawBids: RDD[List[String]], exchangeRates: Map[String, Double]): RDD[BidItem] = {
+    def extractBid(row: List[String], pricePosition: Int, loSa: String): BidItem = {
+      return new BidItem(
+        motelId = row(0),
+        bidDate =
+          Constants.INPUT_DATE_FORMAT.parseDateTime(row(1)).toString(Constants.OUTPUT_DATE_FORMAT),
+        loSa = loSa,
+        price = row(pricePosition).toDouble * exchangeRates(row(1)))
+    }
+    def extractSpecifiedBidItems(row: List[String]): TraversableOnce[BidItem] = {
+      // Wish to do it more elegant way using 'yield'
+      // But I don't know Scala enough :(
+      val buffer = new ListBuffer[BidItem]
+      // Just suppress NumberFormatExceptions and NoSuchElementException, don't add such columns to buffer
+      try {
+        buffer += extractBid(row, 5, "US")
+      } catch {
+        case _:java.lang.NumberFormatException =>
+        case _:java.util.NoSuchElementException =>
+      }
+      try {
+        buffer += extractBid(row, 6, "MX")
+      } catch {
+        case _:java.lang.NumberFormatException =>
+        case _:java.util.NoSuchElementException =>
+      }
+      try {
+        buffer += extractBid(row, 8, "CA")
+      } catch {
+        case _:java.lang.NumberFormatException =>
+        case _:java.util.NoSuchElementException =>
+      }
+      return buffer.toList
+    }
+
+    return rawBids
+      .filter(x => x(2).slice(0,6) != "ERROR_")
+      .flatMap(extractSpecifiedBidItems)
+  }
 
   def getMotels(sc:SparkContext, motelsPath: String): RDD[(String, String)] = ???
 
