@@ -1,2 +1,10 @@
 *.class
 *.log
+
+target/
+
+*.DS_Store*
+
+*.iml
+.idea/
+/scriptFile.scala
