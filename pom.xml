@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.epam.hubd</groupId>
-        <artifactId>spark_core_homeowrk_1</artifactId>
+        <artifactId>spark_core_homeowork_1</artifactId>
     <version>1.0.0</version>
 
     <dependencies>

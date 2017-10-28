@@ -76,7 +76,8 @@ object MotelsHomeRecommendation {
   }
 
   def getRawBids(sc: SparkContext, bidsPath: String): RDD[List[String]] = {
-    return sc.textFile(bidsPath).map(x => x.split(",").toList)
+    return sc.textFile(bidsPath)
+      .map(x => x.split(",").toList)
 }
 
   def getErroneousRecords(rawBids: RDD[List[String]]): RDD[String] = {
@@ -104,21 +105,19 @@ object MotelsHomeRecommendation {
         bidDate =
           Constants.INPUT_DATE_FORMAT.parseDateTime(row(1)).toString(Constants.OUTPUT_DATE_FORMAT),
         loSa = loSa,
-        price = row(pricePosition).toDouble * exchangeRates(row(1)))
+        // Sorry for StackOverflow hack to limit precision
+        price =  Math.round(row(pricePosition).toDouble * exchangeRates(row(1))*1000)/1000.0d
+      )
     }
     def extractSpecifiedBidItems(row: List[String]): TraversableOnce[BidItem] = {
       // Wish to do it more elegant way using 'yield'
       // But I don't know Scala enough :(
       val buffer = new ListBuffer[BidItem]
       // Just suppress NumberFormatExceptions and NoSuchElementException, don't add such columns to buffer
+      // Order *SHOULD* be US-CA-MX, otherwise unit test will not pass
+      // Killed an hour for this
       try {
         buffer += extractBid(row, 5, "US")
-      } catch {
-        case _:java.lang.NumberFormatException =>
-        case _:java.util.NoSuchElementException =>
-      }
-      try {
-        buffer += extractBid(row, 6, "MX")
       } catch {
         case _:java.lang.NumberFormatException =>
         case _:java.util.NoSuchElementException =>
@@ -129,7 +128,13 @@ object MotelsHomeRecommendation {
         case _:java.lang.NumberFormatException =>
         case _:java.util.NoSuchElementException =>
       }
-      return buffer.toList
+      try {
+        buffer += extractBid(row, 6, "MX")
+      } catch {
+        case _:java.lang.NumberFormatException =>
+        case _:java.util.NoSuchElementException =>
+      }
+      return buffer
     }
 
     return rawBids
@@ -137,7 +142,48 @@ object MotelsHomeRecommendation {
       .flatMap(extractSpecifiedBidItems)
   }
 
-  def getMotels(sc:SparkContext, motelsPath: String): RDD[(String, String)] = ???
+  def getMotels(sc:SparkContext, motelsPath: String): RDD[(String, String)] = {
+    return sc.textFile(motelsPath)
+      .map(x => {
+        val list = x.split(",", 3)
+        (list(0), list(1))
+      })
+  }
 
-  def getEnriched(bids: RDD[BidItem], motels: RDD[(String, String)]): RDD[EnrichedItem] = ???
+  def getEnriched(bids: RDD[BidItem], motels: RDD[(String, String)]): RDD[EnrichedItem] = {
+
+    def maxElement(a: Tuple2[EnrichedItem, Long], b: Tuple2[EnrichedItem, Long]): Tuple2[EnrichedItem, Long] = {
+      val item_a = a._1
+      val index_a = a._2
+      val item_b = b._1
+      val index_b = b._2
+      if (item_a.price > item_b.price)
+        return a
+      else if (item_a.price < item_b.price)
+        return b
+      else {
+        if (index_a < index_b)
+          return a
+        else return b
+      }
+    }
+
+    val bidsPrepared=bids.map(x => (x.motelId, x))
+    val enrichedItems = bidsPrepared.join(motels).map(x => {
+      val row = x._2
+      new EnrichedItem(
+        motelId = row._1.motelId,
+        motelName = row._2,
+        bidDate = row._1.bidDate,
+        loSa = row._1.loSa,
+        price = row._1.price
+      )
+    })
+    return enrichedItems
+      .zipWithIndex
+      .cache
+      .map( x => ((x._1.motelId, x._1.bidDate),x))
+      .reduceByKey(maxElement)
+      .map( x => x._2._1)
+  }
 }
