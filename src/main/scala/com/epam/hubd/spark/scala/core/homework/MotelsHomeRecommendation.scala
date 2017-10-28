@@ -151,23 +151,6 @@ object MotelsHomeRecommendation {
   }
 
   def getEnriched(bids: RDD[BidItem], motels: RDD[(String, String)]): RDD[EnrichedItem] = {
-
-    def maxElement(a: Tuple2[EnrichedItem, Long], b: Tuple2[EnrichedItem, Long]): Tuple2[EnrichedItem, Long] = {
-      val item_a = a._1
-      val index_a = a._2
-      val item_b = b._1
-      val index_b = b._2
-      if (item_a.price > item_b.price)
-        return a
-      else if (item_a.price < item_b.price)
-        return b
-      else {
-        if (index_a < index_b)
-          return a
-        else return b
-      }
-    }
-
     val bidsPrepared=bids.map(x => (x.motelId, x))
     val enrichedItems = bidsPrepared.join(motels).map(x => {
       val row = x._2
@@ -180,10 +163,8 @@ object MotelsHomeRecommendation {
       )
     })
     return enrichedItems
-      .zipWithIndex
-      .cache
-      .map( x => ((x._1.motelId, x._1.bidDate),x))
-      .reduceByKey(maxElement)
-      .map( x => x._2._1)
+      .map( x => ((x.motelId, x.bidDate),x))
+      .reduceByKey( (a, b) => if (a.price >= b.price) a else b )
+      .map( x => x._2)
   }
 }
