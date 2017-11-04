@@ -1,0 +1,424 @@
+[root@sandbox spark_core_homework_1]# bash -x submit_homework.sh 2>&1 | tee submit_homework_log.txt
++ TEST_RESOURCES=/spark-core/dataset/local/
++ hdfs dfs -rm -r /results
+17/11/04 18:33:56 INFO fs.TrashPolicyDefault: Moved: 'hdfs://sandbox.hortonworks.com:8020/results' to trash at: hdfs://sandbox.hortonworks.com:8020/user/root/.Trash/Current/results1509820436600
++ spark-submit --conf spark.ui.port=10500 --class com.epam.hubd.spark.scala.core.homework.MotelsHomeRecommendation target/spark-sql-hw.jar /spark-core/dataset/local//bids.txt /spark-core/dataset/local//motels.txt /spark-core/dataset/local//exchange_rate.txt /results
+SPARK_MAJOR_VERSION is set to 2, using Spark2
+17/11/04 18:33:58 INFO SparkContext: Running Spark version 2.1.1.2.6.1.0-129
+17/11/04 18:33:58 INFO SecurityManager: Changing view acls to: root
+17/11/04 18:33:58 INFO SecurityManager: Changing modify acls to: root
+17/11/04 18:33:58 INFO SecurityManager: Changing view acls groups to:
+17/11/04 18:33:58 INFO SecurityManager: Changing modify acls groups to:
+17/11/04 18:33:58 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+17/11/04 18:33:59 INFO Utils: Successfully started service 'sparkDriver' on port 46323.
+17/11/04 18:33:59 INFO SparkEnv: Registering MapOutputTracker
+17/11/04 18:33:59 INFO SparkEnv: Registering BlockManagerMaster
+17/11/04 18:33:59 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+17/11/04 18:33:59 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+17/11/04 18:33:59 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-a4680bf5-38aa-4ee5-9fe5-41f4950eace8
+17/11/04 18:33:59 INFO MemoryStore: MemoryStore started with capacity 366.3 MB
+17/11/04 18:33:59 INFO SparkEnv: Registering OutputCommitCoordinator
+17/11/04 18:33:59 INFO log: Logging initialized @2260ms
+17/11/04 18:33:59 INFO Server: jetty-9.2.z-SNAPSHOT
+17/11/04 18:33:59 INFO Server: Started @2358ms
+17/11/04 18:33:59 INFO ServerConnector: Started ServerConnector@319dead1{HTTP/1.1}{0.0.0.0:10500}
+17/11/04 18:33:59 INFO Utils: Successfully started service 'SparkUI' on port 10500.
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@3b9d6699{/jobs,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@5ae76500{/jobs/json,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@1133ec6e{/jobs/job,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@2a2da905{/jobs/job/json,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@60cf80e7{/stages,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@770d0ea6{/stages/json,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@54107f42{/stages/stage,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@3bd7f8dc{/stages/stage/json,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@1eba372c{/stages/pool,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@25f9407e{/stages/pool/json,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@1a69561c{/storage,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@363f6148{/storage/json,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@1b28f282{/storage/rdd,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@5e77f0f4{/storage/rdd/json,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@455351c4{/environment,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@4816c290{/environment/json,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@16423501{/executors,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@7a138fc5{/executors/json,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@307765b4{/executors/threadDump,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@2c95ac9e{/executors/threadDump/json,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@459f7aa3{/static,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@6691490c{/,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@2e5c7f0b{/api,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@5db99216{/jobs/job/kill,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@5c1bd44c{/stages/stage/kill,null,AVAILABLE,@Spark}
+17/11/04 18:33:59 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://172.17.0.2:10500
+17/11/04 18:33:59 INFO SparkContext: Added JAR file:/spark-core/homework1/spark_core_homework_1/target/spark-sql-hw.jar at spark://172.17.0.2:46323/jars/spark-sql-hw.jar with timestamp 1509820439955
+17/11/04 18:34:00 INFO Executor: Starting executor ID driver on host localhost
+17/11/04 18:34:00 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 34593.
+17/11/04 18:34:00 INFO NettyBlockTransferService: Server created on 172.17.0.2:34593
+17/11/04 18:34:00 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+17/11/04 18:34:00 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 172.17.0.2, 34593, None)
+17/11/04 18:34:00 INFO BlockManagerMasterEndpoint: Registering block manager 172.17.0.2:34593 with 366.3 MB RAM, BlockManagerId(driver, 172.17.0.2, 34593, None)
+17/11/04 18:34:00 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 172.17.0.2, 34593, None)
+17/11/04 18:34:00 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 172.17.0.2, 34593, None)
+17/11/04 18:34:00 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@68105edc{/metrics/json,null,AVAILABLE,@Spark}
+17/11/04 18:34:02 INFO EventLoggingListener: Logging events to hdfs:///spark2-history/local-1509820439999
+17/11/04 18:34:02 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 352.4 KB, free 366.0 MB)
+17/11/04 18:34:02 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 31.4 KB, free 365.9 MB)
+17/11/04 18:34:02 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.17.0.2:34593 (size: 31.4 KB, free: 366.3 MB)
+17/11/04 18:34:02 INFO SparkContext: Created broadcast 0 from textFile at MotelsHomeRecommendation.scala:79
+17/11/04 18:34:02 INFO FileInputFormat: Total input paths to process : 1
+17/11/04 18:34:02 INFO NetworkTopology: Adding a new node: /default-rack/172.17.0.2:50010
+17/11/04 18:34:02 INFO deprecation: mapred.tip.id is deprecated. Instead, use mapreduce.task.id
+17/11/04 18:34:02 INFO deprecation: mapred.task.id is deprecated. Instead, use mapreduce.task.attempt.id
+17/11/04 18:34:02 INFO deprecation: mapred.task.is.map is deprecated. Instead, use mapreduce.task.ismap
+17/11/04 18:34:02 INFO deprecation: mapred.task.partition is deprecated. Instead, use mapreduce.task.partition
+17/11/04 18:34:02 INFO deprecation: mapred.job.id is deprecated. Instead, use mapreduce.job.id
+17/11/04 18:34:02 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+17/11/04 18:34:02 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+17/11/04 18:34:02 INFO SparkContext: Starting job: saveAsTextFile at MotelsHomeRecommendation.scala:43
+17/11/04 18:34:02 INFO DAGScheduler: Registering RDD 4 (map at MotelsHomeRecommendation.scala:86)
+17/11/04 18:34:02 INFO DAGScheduler: Got job 0 (saveAsTextFile at MotelsHomeRecommendation.scala:43) with 2 output partitions
+17/11/04 18:34:02 INFO DAGScheduler: Final stage: ResultStage 1 (saveAsTextFile at MotelsHomeRecommendation.scala:43)
+17/11/04 18:34:02 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 0)
+17/11/04 18:34:02 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 0)
+17/11/04 18:34:02 INFO DAGScheduler: Submitting ShuffleMapStage 0 (MapPartitionsRDD[4] at map at MotelsHomeRecommendation.scala:86), which has no missing parents
+17/11/04 18:34:02 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 4.7 KB, free 365.9 MB)
+17/11/04 18:34:02 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 2.6 KB, free 365.9 MB)
+17/11/04 18:34:02 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.17.0.2:34593 (size: 2.6 KB, free: 366.3 MB)
+17/11/04 18:34:02 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:996
+17/11/04 18:34:02 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 0 (MapPartitionsRDD[4] at map at MotelsHomeRecommendation.scala:86)
+17/11/04 18:34:02 INFO TaskSchedulerImpl: Adding task set 0.0 with 2 tasks
+17/11/04 18:34:02 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, executor driver, partition 0, ANY, 6069 bytes)
+17/11/04 18:34:02 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, executor driver, partition 1, ANY, 6069 bytes)
+17/11/04 18:34:02 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+17/11/04 18:34:02 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
+17/11/04 18:34:02 INFO Executor: Fetching spark://172.17.0.2:46323/jars/spark-sql-hw.jar with timestamp 1509820439955
+17/11/04 18:34:03 INFO TransportClientFactory: Successfully created connection to /172.17.0.2:46323 after 26 ms (0 ms spent in bootstraps)
+17/11/04 18:34:03 INFO Utils: Fetching spark://172.17.0.2:46323/jars/spark-sql-hw.jar to /tmp/spark-68f22a41-dc16-480a-9d20-50502a4ef86d/userFiles-c5fddb16-87e5-435f-85e0-b0e0c9d5ef84/fetchFileTemp6489964256176072047.tmp
+17/11/04 18:34:03 INFO Executor: Adding file:/tmp/spark-68f22a41-dc16-480a-9d20-50502a4ef86d/userFiles-c5fddb16-87e5-435f-85e0-b0e0c9d5ef84/spark-sql-hw.jar to class loader
+17/11/04 18:34:03 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/spark-core/dataset/local/bids.txt:0+123777227
+17/11/04 18:34:03 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/spark-core/dataset/local/bids.txt:123777227+123777227
+17/11/04 18:34:07 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 1816 bytes result sent to driver
+17/11/04 18:34:07 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1816 bytes result sent to driver
+17/11/04 18:34:07 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 4088 ms on localhost (executor driver) (1/2)
+17/11/04 18:34:07 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 4118 ms on localhost (executor driver) (2/2)
+17/11/04 18:34:07 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+17/11/04 18:34:07 INFO DAGScheduler: ShuffleMapStage 0 (map at MotelsHomeRecommendation.scala:86) finished in 4.139 s
+17/11/04 18:34:07 INFO DAGScheduler: looking for newly runnable stages
+17/11/04 18:34:07 INFO DAGScheduler: running: Set()
+17/11/04 18:34:07 INFO DAGScheduler: waiting: Set(ResultStage 1)
+17/11/04 18:34:07 INFO DAGScheduler: failed: Set()
+17/11/04 18:34:07 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[7] at saveAsTextFile at MotelsHomeRecommendation.scala:43), which has no missing parents
+17/11/04 18:34:07 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 91.5 KB, free 365.8 MB)
+17/11/04 18:34:07 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 34.5 KB, free 365.8 MB)
+17/11/04 18:34:07 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.17.0.2:34593 (size: 34.5 KB, free: 366.2 MB)
+17/11/04 18:34:07 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:996
+17/11/04 18:34:07 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 1 (MapPartitionsRDD[7] at saveAsTextFile at MotelsHomeRecommendation.scala:43)
+17/11/04 18:34:07 INFO TaskSchedulerImpl: Adding task set 1.0 with 2 tasks
+17/11/04 18:34:07 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 2, localhost, executor driver, partition 0, ANY, 5813 bytes)
+17/11/04 18:34:07 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 3, localhost, executor driver, partition 1, ANY, 5813 bytes)
+17/11/04 18:34:07 INFO Executor: Running task 0.0 in stage 1.0 (TID 2)
+17/11/04 18:34:07 INFO Executor: Running task 1.0 in stage 1.0 (TID 3)
+17/11/04 18:34:07 INFO ShuffleBlockFetcherIterator: Getting 2 non-empty blocks out of 2 blocks
+17/11/04 18:34:07 INFO ShuffleBlockFetcherIterator: Getting 2 non-empty blocks out of 2 blocks
+17/11/04 18:34:07 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 10 ms
+17/11/04 18:34:07 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 10 ms
+17/11/04 18:34:07 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+17/11/04 18:34:07 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+17/11/04 18:34:07 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+17/11/04 18:34:07 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+17/11/04 18:34:07 INFO FileOutputCommitter: Saved output of task 'attempt_20171104183402_0001_m_000001_3' to hdfs://sandbox.hortonworks.com:8020/results/erroneous/_temporary/0/task_20171104183402_0001_m_000001
+17/11/04 18:34:07 INFO FileOutputCommitter: Saved output of task 'attempt_20171104183402_0001_m_000000_2' to hdfs://sandbox.hortonworks.com:8020/results/erroneous/_temporary/0/task_20171104183402_0001_m_000000
+17/11/04 18:34:07 INFO SparkHadoopMapRedUtil: attempt_20171104183402_0001_m_000000_2: Committed
+17/11/04 18:34:07 INFO SparkHadoopMapRedUtil: attempt_20171104183402_0001_m_000001_3: Committed
+17/11/04 18:34:07 INFO Executor: Finished task 1.0 in stage 1.0 (TID 3). 1890 bytes result sent to driver
+17/11/04 18:34:07 INFO Executor: Finished task 0.0 in stage 1.0 (TID 2). 1977 bytes result sent to driver
+17/11/04 18:34:07 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 2) in 581 ms on localhost (executor driver) (1/2)
+17/11/04 18:34:07 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 3) in 581 ms on localhost (executor driver) (2/2)
+17/11/04 18:34:07 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool
+17/11/04 18:34:07 INFO DAGScheduler: ResultStage 1 (saveAsTextFile at MotelsHomeRecommendation.scala:43) finished in 0.585 s
+17/11/04 18:34:07 INFO DAGScheduler: Job 0 finished: saveAsTextFile at MotelsHomeRecommendation.scala:43, took 5.104253 s
+17/11/04 18:34:07 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 352.4 KB, free 365.5 MB)
+17/11/04 18:34:07 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 31.4 KB, free 365.4 MB)
+17/11/04 18:34:07 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.17.0.2:34593 (size: 31.4 KB, free: 366.2 MB)
+17/11/04 18:34:07 INFO SparkContext: Created broadcast 3 from textFile at MotelsHomeRecommendation.scala:92
+17/11/04 18:34:07 INFO FileInputFormat: Total input paths to process : 1
+17/11/04 18:34:07 INFO SparkContext: Starting job: collectAsMap at MotelsHomeRecommendation.scala:97
+17/11/04 18:34:08 INFO DAGScheduler: Got job 1 (collectAsMap at MotelsHomeRecommendation.scala:97) with 2 output partitions
+17/11/04 18:34:08 INFO DAGScheduler: Final stage: ResultStage 2 (collectAsMap at MotelsHomeRecommendation.scala:97)
+17/11/04 18:34:08 INFO DAGScheduler: Parents of final stage: List()
+17/11/04 18:34:08 INFO DAGScheduler: Missing parents: List()
+17/11/04 18:34:08 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[10] at map at MotelsHomeRecommendation.scala:93), which has no missing parents
+17/11/04 18:34:08 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 3.4 KB, free 365.4 MB)
+17/11/04 18:34:08 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 2.0 KB, free 365.4 MB)
+17/11/04 18:34:08 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 172.17.0.2:34593 (size: 2.0 KB, free: 366.2 MB)
+17/11/04 18:34:08 INFO SparkContext: Created broadcast 4 from broadcast at DAGScheduler.scala:996
+17/11/04 18:34:08 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 2 (MapPartitionsRDD[10] at map at MotelsHomeRecommendation.scala:93)
+17/11/04 18:34:08 INFO TaskSchedulerImpl: Adding task set 2.0 with 2 tasks
+17/11/04 18:34:08 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 4, localhost, executor driver, partition 0, ANY, 6088 bytes)
+17/11/04 18:34:08 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 5, localhost, executor driver, partition 1, ANY, 6088 bytes)
+17/11/04 18:34:08 INFO Executor: Running task 0.0 in stage 2.0 (TID 4)
+17/11/04 18:34:08 INFO Executor: Running task 1.0 in stage 2.0 (TID 5)
+17/11/04 18:34:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/spark-core/dataset/local/exchange_rate.txt:0+127020
+17/11/04 18:34:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/spark-core/dataset/local/exchange_rate.txt:127020+127020
+17/11/04 18:34:08 INFO Executor: Finished task 0.0 in stage 2.0 (TID 4). 159779 bytes result sent to driver
+17/11/04 18:34:08 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 4) in 81 ms on localhost (executor driver) (1/2)
+17/11/04 18:34:08 INFO Executor: Finished task 1.0 in stage 2.0 (TID 5). 159707 bytes result sent to driver
+17/11/04 18:34:08 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 5) in 87 ms on localhost (executor driver) (2/2)
+17/11/04 18:34:08 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool
+17/11/04 18:34:08 INFO DAGScheduler: ResultStage 2 (collectAsMap at MotelsHomeRecommendation.scala:97) finished in 0.091 s
+17/11/04 18:34:08 INFO DAGScheduler: Job 1 finished: collectAsMap at MotelsHomeRecommendation.scala:97, took 0.105686 s
+17/11/04 18:34:08 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 352.4 KB, free 365.1 MB)
+17/11/04 18:34:08 INFO MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 31.4 KB, free 365.0 MB)
+17/11/04 18:34:08 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on 172.17.0.2:34593 (size: 31.4 KB, free: 366.2 MB)
+17/11/04 18:34:08 INFO SparkContext: Created broadcast 5 from textFile at MotelsHomeRecommendation.scala:146
+17/11/04 18:34:08 INFO FileInputFormat: Total input paths to process : 1
+17/11/04 18:34:08 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+17/11/04 18:34:08 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+17/11/04 18:34:08 INFO SparkContext: Starting job: saveAsTextFile at MotelsHomeRecommendation.scala:75
+17/11/04 18:34:08 INFO DAGScheduler: Registering RDD 16 (map at MotelsHomeRecommendation.scala:154)
+17/11/04 18:34:08 INFO DAGScheduler: Registering RDD 15 (map at MotelsHomeRecommendation.scala:147)
+17/11/04 18:34:08 INFO DAGScheduler: Registering RDD 21 (map at MotelsHomeRecommendation.scala:166)
+17/11/04 18:34:08 INFO DAGScheduler: Got job 2 (saveAsTextFile at MotelsHomeRecommendation.scala:75) with 2 output partitions
+17/11/04 18:34:08 INFO DAGScheduler: Final stage: ResultStage 6 (saveAsTextFile at MotelsHomeRecommendation.scala:75)
+17/11/04 18:34:08 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 5)
+17/11/04 18:34:08 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 5)
+17/11/04 18:34:08 INFO DAGScheduler: Submitting ShuffleMapStage 3 (MapPartitionsRDD[16] at map at MotelsHomeRecommendation.scala:154), which has no missing parents
+17/11/04 18:34:08 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 261.7 KB, free 364.8 MB)
+17/11/04 18:34:08 INFO MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 95.9 KB, free 364.7 MB)
+17/11/04 18:34:08 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on 172.17.0.2:34593 (size: 95.9 KB, free: 366.1 MB)
+17/11/04 18:34:08 INFO SparkContext: Created broadcast 6 from broadcast at DAGScheduler.scala:996
+17/11/04 18:34:08 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 3 (MapPartitionsRDD[16] at map at MotelsHomeRecommendation.scala:154)
+17/11/04 18:34:08 INFO TaskSchedulerImpl: Adding task set 3.0 with 2 tasks
+17/11/04 18:34:08 INFO DAGScheduler: Submitting ShuffleMapStage 4 (MapPartitionsRDD[15] at map at MotelsHomeRecommendation.scala:147), which has no missing parents
+17/11/04 18:34:08 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 4.0 KB, free 364.7 MB)
+17/11/04 18:34:08 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 6, localhost, executor driver, partition 0, ANY, 6070 bytes)
+17/11/04 18:34:08 INFO TaskSetManager: Starting task 1.0 in stage 3.0 (TID 7, localhost, executor driver, partition 1, ANY, 6070 bytes)
+17/11/04 18:34:08 INFO MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 2.4 KB, free 364.7 MB)
+17/11/04 18:34:08 INFO Executor: Running task 0.0 in stage 3.0 (TID 6)
+17/11/04 18:34:08 INFO Executor: Running task 1.0 in stage 3.0 (TID 7)
+17/11/04 18:34:08 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 172.17.0.2:34593 (size: 2.4 KB, free: 366.1 MB)
+17/11/04 18:34:08 INFO SparkContext: Created broadcast 7 from broadcast at DAGScheduler.scala:996
+17/11/04 18:34:08 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 4 (MapPartitionsRDD[15] at map at MotelsHomeRecommendation.scala:147)
+17/11/04 18:34:08 INFO TaskSchedulerImpl: Adding task set 4.0 with 2 tasks
+17/11/04 18:34:08 INFO TaskSetManager: Starting task 0.0 in stage 4.0 (TID 8, localhost, executor driver, partition 0, ANY, 6072 bytes)
+17/11/04 18:34:08 INFO TaskSetManager: Starting task 1.0 in stage 4.0 (TID 9, localhost, executor driver, partition 1, ANY, 6072 bytes)
+17/11/04 18:34:08 INFO Executor: Running task 0.0 in stage 4.0 (TID 8)
+17/11/04 18:34:08 INFO Executor: Running task 1.0 in stage 4.0 (TID 9)
+17/11/04 18:34:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/spark-core/dataset/local/motels.txt:0+330745
+17/11/04 18:34:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/spark-core/dataset/local/motels.txt:330745+330746
+17/11/04 18:34:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/spark-core/dataset/local/bids.txt:123777227+123777227
+17/11/04 18:34:08 INFO HadoopRDD: Input split: hdfs://sandbox.hortonworks.com:8020/spark-core/dataset/local/bids.txt:0+123777227
+17/11/04 18:34:08 INFO Executor: Finished task 0.0 in stage 4.0 (TID 8). 1411 bytes result sent to driver
+17/11/04 18:34:08 INFO TaskSetManager: Finished task 0.0 in stage 4.0 (TID 8) in 83 ms on localhost (executor driver) (1/2)
+17/11/04 18:34:08 INFO Executor: Finished task 1.0 in stage 4.0 (TID 9). 1411 bytes result sent to driver
+17/11/04 18:34:08 INFO TaskSetManager: Finished task 1.0 in stage 4.0 (TID 9) in 98 ms on localhost (executor driver) (2/2)
+17/11/04 18:34:08 INFO TaskSchedulerImpl: Removed TaskSet 4.0, whose tasks have all completed, from pool
+17/11/04 18:34:08 INFO DAGScheduler: ShuffleMapStage 4 (map at MotelsHomeRecommendation.scala:147) finished in 0.102 s
+17/11/04 18:34:08 INFO DAGScheduler: looking for newly runnable stages
+17/11/04 18:34:08 INFO DAGScheduler: running: Set(ShuffleMapStage 3)
+17/11/04 18:34:08 INFO DAGScheduler: waiting: Set(ShuffleMapStage 5, ResultStage 6)
+17/11/04 18:34:08 INFO DAGScheduler: failed: Set()
+17/11/04 18:34:08 INFO BlockManagerInfo: Removed broadcast_3_piece0 on 172.17.0.2:34593 in memory (size: 31.4 KB, free: 366.1 MB)
+17/11/04 18:34:08 INFO BlockManagerInfo: Removed broadcast_7_piece0 on 172.17.0.2:34593 in memory (size: 2.4 KB, free: 366.1 MB)
+17/11/04 18:34:08 INFO BlockManagerInfo: Removed broadcast_2_piece0 on 172.17.0.2:34593 in memory (size: 34.5 KB, free: 366.1 MB)
+17/11/04 18:34:08 INFO BlockManagerInfo: Removed broadcast_4_piece0 on 172.17.0.2:34593 in memory (size: 2.0 KB, free: 366.1 MB)
+17/11/04 18:34:23 INFO Executor: Finished task 1.0 in stage 3.0 (TID 7). 1484 bytes result sent to driver
+17/11/04 18:34:23 INFO TaskSetManager: Finished task 1.0 in stage 3.0 (TID 7) in 14867 ms on localhost (executor driver) (1/2)
+17/11/04 18:34:23 INFO Executor: Finished task 0.0 in stage 3.0 (TID 6). 1484 bytes result sent to driver
+17/11/04 18:34:23 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 6) in 14937 ms on localhost (executor driver) (2/2)
+17/11/04 18:34:23 INFO TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool
+17/11/04 18:34:23 INFO DAGScheduler: ShuffleMapStage 3 (map at MotelsHomeRecommendation.scala:154) finished in 14.937 s
+17/11/04 18:34:23 INFO DAGScheduler: looking for newly runnable stages
+17/11/04 18:34:23 INFO DAGScheduler: running: Set()
+17/11/04 18:34:23 INFO DAGScheduler: waiting: Set(ShuffleMapStage 5, ResultStage 6)
+17/11/04 18:34:23 INFO DAGScheduler: failed: Set()
+17/11/04 18:34:23 INFO DAGScheduler: Submitting ShuffleMapStage 5 (MapPartitionsRDD[21] at map at MotelsHomeRecommendation.scala:166), which has no missing parents
+17/11/04 18:34:23 INFO MemoryStore: Block broadcast_8 stored as values in memory (estimated size 3.9 KB, free 365.2 MB)
+17/11/04 18:34:23 INFO MemoryStore: Block broadcast_8_piece0 stored as bytes in memory (estimated size 2.1 KB, free 365.2 MB)
+17/11/04 18:34:23 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on 172.17.0.2:34593 (size: 2.1 KB, free: 366.1 MB)
+17/11/04 18:34:23 INFO SparkContext: Created broadcast 8 from broadcast at DAGScheduler.scala:996
+17/11/04 18:34:23 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 5 (MapPartitionsRDD[21] at map at MotelsHomeRecommendation.scala:166)
+17/11/04 18:34:23 INFO TaskSchedulerImpl: Adding task set 5.0 with 2 tasks
+17/11/04 18:34:23 INFO TaskSetManager: Starting task 0.0 in stage 5.0 (TID 10, localhost, executor driver, partition 0, PROCESS_LOCAL, 5866 bytes)
+17/11/04 18:34:23 INFO TaskSetManager: Starting task 1.0 in stage 5.0 (TID 11, localhost, executor driver, partition 1, PROCESS_LOCAL, 5866 bytes)
+17/11/04 18:34:23 INFO Executor: Running task 1.0 in stage 5.0 (TID 11)
+17/11/04 18:34:23 INFO Executor: Running task 0.0 in stage 5.0 (TID 10)
+17/11/04 18:34:23 INFO ShuffleBlockFetcherIterator: Getting 2 non-empty blocks out of 2 blocks
+17/11/04 18:34:23 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+17/11/04 18:34:23 INFO ShuffleBlockFetcherIterator: Getting 2 non-empty blocks out of 2 blocks
+17/11/04 18:34:23 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+17/11/04 18:34:23 INFO ShuffleBlockFetcherIterator: Getting 2 non-empty blocks out of 2 blocks
+17/11/04 18:34:23 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+17/11/04 18:34:23 INFO ShuffleBlockFetcherIterator: Getting 2 non-empty blocks out of 2 blocks
+17/11/04 18:34:23 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+17/11/04 18:34:24 INFO BlockManagerInfo: Removed broadcast_6_piece0 on 172.17.0.2:34593 in memory (size: 95.9 KB, free: 366.2 MB)
+17/11/04 18:34:24 INFO BlockManagerInfo: Removed broadcast_1_piece0 on 172.17.0.2:34593 in memory (size: 2.6 KB, free: 366.2 MB)
+17/11/04 18:34:26 INFO ExternalAppendOnlyMap: Thread 89 spilling in-memory map of 187.8 MB to disk (1 time so far)
+17/11/04 18:34:26 INFO ExternalAppendOnlyMap: Thread 88 spilling in-memory map of 187.8 MB to disk (1 time so far)
+17/11/04 18:34:30 INFO ExternalAppendOnlyMap: Thread 88 spilling in-memory map of 187.8 MB to disk (2 times so far)
+17/11/04 18:34:30 INFO ExternalAppendOnlyMap: Thread 89 spilling in-memory map of 187.8 MB to disk (2 times so far)
+17/11/04 18:34:34 INFO ExternalAppendOnlyMap: Thread 88 spilling in-memory map of 187.8 MB to disk (3 times so far)
+17/11/04 18:34:34 INFO ExternalAppendOnlyMap: Task 10 force spilling in-memory map to disk and it will release 182.8 MB memory
+17/11/04 18:34:37 INFO ExternalAppendOnlyMap: Task 11 force spilling in-memory map to disk and it will release 75.1 MB memory
+17/11/04 18:34:40 INFO ExternalSorter: Thread 89 spilling in-memory map of 187.8 MB to disk (1 time so far)
+17/11/04 18:34:40 INFO ExternalSorter: Thread 88 spilling in-memory map of 197.3 MB to disk (1 time so far)
+17/11/04 18:34:46 INFO ExternalSorter: Thread 89 spilling in-memory map of 187.8 MB to disk (2 times so far)
+17/11/04 18:34:47 INFO ExternalSorter: Thread 88 spilling in-memory map of 189.9 MB to disk (2 times so far)
+17/11/04 18:34:58 INFO Executor: Finished task 0.0 in stage 5.0 (TID 10). 2121 bytes result sent to driver
+17/11/04 18:34:58 INFO TaskSetManager: Finished task 0.0 in stage 5.0 (TID 10) in 34752 ms on localhost (executor driver) (1/2)
+17/11/04 18:34:58 INFO Executor: Finished task 1.0 in stage 5.0 (TID 11). 2121 bytes result sent to driver
+17/11/04 18:34:58 INFO TaskSetManager: Finished task 1.0 in stage 5.0 (TID 11) in 35096 ms on localhost (executor driver) (2/2)
+17/11/04 18:34:58 INFO TaskSchedulerImpl: Removed TaskSet 5.0, whose tasks have all completed, from pool
+17/11/04 18:34:58 INFO DAGScheduler: ShuffleMapStage 5 (map at MotelsHomeRecommendation.scala:166) finished in 35.100 s
+17/11/04 18:34:58 INFO DAGScheduler: looking for newly runnable stages
+17/11/04 18:34:58 INFO DAGScheduler: running: Set()
+17/11/04 18:34:58 INFO DAGScheduler: waiting: Set(ResultStage 6)
+17/11/04 18:34:58 INFO DAGScheduler: failed: Set()
+17/11/04 18:34:58 INFO DAGScheduler: Submitting ResultStage 6 (MapPartitionsRDD[24] at saveAsTextFile at MotelsHomeRecommendation.scala:75), which has no missing parents
+17/11/04 18:34:58 INFO MemoryStore: Block broadcast_9 stored as values in memory (estimated size 91.5 KB, free 365.5 MB)
+17/11/04 18:34:58 INFO MemoryStore: Block broadcast_9_piece0 stored as bytes in memory (estimated size 34.4 KB, free 365.4 MB)
+17/11/04 18:34:58 INFO BlockManagerInfo: Added broadcast_9_piece0 in memory on 172.17.0.2:34593 (size: 34.4 KB, free: 366.2 MB)
+17/11/04 18:34:58 INFO SparkContext: Created broadcast 9 from broadcast at DAGScheduler.scala:996
+17/11/04 18:34:58 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 6 (MapPartitionsRDD[24] at saveAsTextFile at MotelsHomeRecommendation.scala:75)
+17/11/04 18:34:58 INFO TaskSchedulerImpl: Adding task set 6.0 with 2 tasks
+17/11/04 18:34:58 INFO TaskSetManager: Starting task 0.0 in stage 6.0 (TID 12, localhost, executor driver, partition 0, ANY, 5814 bytes)
+17/11/04 18:34:58 INFO TaskSetManager: Starting task 1.0 in stage 6.0 (TID 13, localhost, executor driver, partition 1, ANY, 5814 bytes)
+17/11/04 18:34:58 INFO Executor: Running task 0.0 in stage 6.0 (TID 12)
+17/11/04 18:34:58 INFO Executor: Running task 1.0 in stage 6.0 (TID 13)
+17/11/04 18:34:58 INFO ShuffleBlockFetcherIterator: Getting 2 non-empty blocks out of 2 blocks
+17/11/04 18:34:58 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+17/11/04 18:34:58 INFO ShuffleBlockFetcherIterator: Getting 2 non-empty blocks out of 2 blocks
+17/11/04 18:34:58 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+17/11/04 18:35:00 INFO ExternalAppendOnlyMap: Thread 89 spilling in-memory map of 187.8 MB to disk (1 time so far)
+17/11/04 18:35:00 INFO ExternalAppendOnlyMap: Thread 88 spilling in-memory map of 189.8 MB to disk (1 time so far)
+17/11/04 18:35:02 INFO BlockManagerInfo: Removed broadcast_8_piece0 on 172.17.0.2:34593 in memory (size: 2.1 KB, free: 366.2 MB)
+17/11/04 18:35:04 INFO ExternalAppendOnlyMap: Thread 89 spilling in-memory map of 187.7 MB to disk (2 times so far)
+17/11/04 18:35:04 INFO ExternalAppendOnlyMap: Thread 88 spilling in-memory map of 188.8 MB to disk (2 times so far)
+17/11/04 18:35:11 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+17/11/04 18:35:11 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+17/11/04 18:35:11 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+17/11/04 18:35:11 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+17/11/04 18:35:16 INFO FileOutputCommitter: Saved output of task 'attempt_20171104183408_0006_m_000001_13' to hdfs://sandbox.hortonworks.com:8020/results/aggregated/_temporary/0/task_20171104183408_0006_m_000001
+17/11/04 18:35:16 INFO SparkHadoopMapRedUtil: attempt_20171104183408_0006_m_000001_13: Committed
+17/11/04 18:35:16 INFO Executor: Finished task 1.0 in stage 6.0 (TID 13). 1963 bytes result sent to driver
+17/11/04 18:35:16 INFO TaskSetManager: Finished task 1.0 in stage 6.0 (TID 13) in 17559 ms on localhost (executor driver) (1/2)
+17/11/04 18:35:16 INFO FileOutputCommitter: Saved output of task 'attempt_20171104183408_0006_m_000000_12' to hdfs://sandbox.hortonworks.com:8020/results/aggregated/_temporary/0/task_20171104183408_0006_m_000000
+17/11/04 18:35:16 INFO SparkHadoopMapRedUtil: attempt_20171104183408_0006_m_000000_12: Committed
+17/11/04 18:35:16 INFO Executor: Finished task 0.0 in stage 6.0 (TID 12). 1963 bytes result sent to driver
+17/11/04 18:35:16 INFO TaskSetManager: Finished task 0.0 in stage 6.0 (TID 12) in 17631 ms on localhost (executor driver) (2/2)
+17/11/04 18:35:16 INFO TaskSchedulerImpl: Removed TaskSet 6.0, whose tasks have all completed, from pool
+17/11/04 18:35:16 INFO DAGScheduler: ResultStage 6 (saveAsTextFile at MotelsHomeRecommendation.scala:75) finished in 17.632 s
+17/11/04 18:35:16 INFO DAGScheduler: Job 2 finished: saveAsTextFile at MotelsHomeRecommendation.scala:75, took 67.802422 s
+17/11/04 18:35:16 INFO ServerConnector: Stopped Spark@319dead1{HTTP/1.1}{0.0.0.0:10500}
+17/11/04 18:35:16 INFO SparkUI: Stopped Spark web UI at http://172.17.0.2:10500
+17/11/04 18:35:16 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+17/11/04 18:35:16 INFO MemoryStore: MemoryStore cleared
+17/11/04 18:35:16 INFO BlockManager: BlockManager stopped
+17/11/04 18:35:16 INFO BlockManagerMaster: BlockManagerMaster stopped
+17/11/04 18:35:16 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+17/11/04 18:35:16 INFO SparkContext: Successfully stopped SparkContext
+17/11/04 18:35:16 INFO ShutdownHookManager: Shutdown hook called
+17/11/04 18:35:16 INFO ShutdownHookManager: Deleting directory /tmp/spark-68f22a41-dc16-480a-9d20-50502a4ef86d
++ hdfs dfs -cat '/results/aggregated/*'
++ head -100
+0000948,Merlin Imperial Inn,2015-10-12 01:00,MX,1.101
+0000167,Village Granja,2016-03-29 15:00,US,0.921
+0000931,Hyatt Jon's Barra Hotelo,2016-07-25 01:00,MX,1.499
+0000583,Hyatt Jon's Por Motel,2016-03-01 14:00,CA,1.72
+0000420,City Copacabana Granja,2015-10-17 13:00,MX,1.665
+0000953,Sun Sine Pestana Apartments,2015-10-08 01:00,CA,1.367
+0000324,City Tiny Spa,2015-12-04 12:00,CA,1.455
+0000967,River Side Posada,2016-02-19 11:00,US,1.768
+0000403,Slaviero Slaviero Granja,2016-05-16 00:00,US,1.856
+0000600,Geronimo Novelo Windsor Granja,2016-02-08 04:00,US,0.868
+0000870,Upper Side Majestic Spa,2016-02-05 15:00,US,1.933
+0000208,Por Hyatt City Hotelo,2016-01-23 10:00,CA,0.561
+0000051,Highway Hotelo,2015-11-19 17:00,MX,0.939
+0000912,Down Town Premier Casino,2016-03-21 23:00,CA,1.256
+0001156,Grand Granja,2016-05-13 21:00,MX,1.407
+0000750,Pestana Ibiza Tavern,2016-07-11 23:00,CA,1.558
+0000183,Olinda Windsor Casino,2016-05-30 04:00,CA,1.673
+0001135,Hyatt City Tavern,2015-11-22 00:00,US,1.585
+0000084,Amanhecer Asturias Hyatt Casino,2015-10-11 19:00,US,1.624
+0000961,Down Town Village Casa,2015-12-08 10:00,MX,1.122
+0000323,Sun Sine Grand Casa,2016-07-18 10:00,CA,1.631
+0000688,Hyatt Hyatt Plaza,2016-07-12 22:00,US,1.74
+0000605,Asturias Ibiza Suburbs Casino,2015-08-13 12:00,US,1.409
+0000362,River Side Barra Posada,2015-10-26 23:00,MX,1.891
+0001180,Olinda Asturias Hotelo,2016-01-28 08:00,US,1.601
+0000829,Elegance Moos' Hostel,2016-03-03 08:00,CA,1.634
+0000083,Suburbs Inn,2015-11-22 12:00,US,1.446
+0000904,Geronimo Ibiza Hotelo,2016-05-27 18:00,MX,1.533
+0000608,Slaviero Olinda Motel,2015-10-03 18:00,US,1.448
+0000522,Pestana Apartments,2016-02-06 09:00,US,1.247
+0000822,River Side Saionara Elegance Apartments,2016-03-11 06:00,US,1.702
+0001015,Geronimo Por Inn,2016-07-24 10:00,CA,1.391
+0000775,Moos' Apartments,2015-11-01 03:00,CA,0.764
+0000820,Highway Granja,2016-03-02 12:00,US,1.871
+0000579,River Side Barra Apartments,2016-02-19 19:00,MX,1.696
+0000903,Slaviero Inn,2016-07-02 13:00,CA,1.687
+0000290,Vermont Highway Hotelo,2015-12-02 22:00,CA,1.474
+0000198,Eas Side Motor Inn,2016-07-15 08:00,US,1.146
+0000282,Jon's Hyatt Motor Inn,2015-08-31 05:00,CA,1.224
+0000297,Slaviero Merlin Motel,2015-09-19 00:00,US,1.233
+0000413,Asturias Hotelo,2016-02-12 12:00,CA,1.92
+0000452,Sun Sine Hotelo,2015-10-24 17:00,MX,1.569
+0001139,Jon's Geronimo Granja,2015-11-08 00:00,MX,1.311
+0000640,Copacabana Moon Light Hostel,2015-12-14 13:00,CA,1.64
+0000928,Saionara River Side Posada,2015-09-29 08:00,MX,1.528
+0000664,Merlin Hotelo,2016-02-10 02:00,CA,1.806
+0000665,Imperial Apartments,2015-08-30 16:00,CA,0.352
+0000097,Slaviero Jon's Spa,2016-03-19 06:00,US,1.449
+0000732,Senado Senado Posada,2015-11-11 21:00,US,1.407
+0000239,Pestana Granja,2016-06-09 03:00,US,1.7
+0000344,Sun Sine Moos' Tavern,2015-12-28 12:00,US,1.727
+0000255,Highway Sun Sine Asturias Spa,2016-02-03 07:00,CA,0.967
+0000528,Sheraton Eas Side Plaza,2016-07-22 14:00,CA,0.61
+0000977,Mengo City Hostel,2016-01-28 19:00,US,1.427
+0001184,Moos' Moos' Spa,2016-05-08 10:00,MX,1.195
+0000281,Tiny Ibiza Hotel,2015-11-08 20:00,US,1.262
+0000574,Grand Hyatt Majestic Inn,2015-11-08 11:00,MX,1.221
+0000285,Suburbs Copacabana Posada,2016-02-25 07:00,MX,1.667
+0000174,Pestana Suburbs Amanhecer Posada,2016-03-13 06:00,CA,1.959
+0001022,Barra Saionara Granja,2015-10-05 17:00,MX,0.641
+0000915,Saionara Mengo Tiny Tavern,2016-05-11 09:00,US,1.182
+0000606,Merlin Inn,2016-03-19 07:00,US,1.936
+0000240,Barra Premier Novelo Boarding House,2016-03-18 08:00,US,1.73
+0001147,Amanhecer Copacabana Hotel,2015-10-02 01:00,MX,1.841
+0000968,Jon's Por Pestana Casa,2015-10-30 09:00,US,0.757
+0000550,Novelo Olinda Boarding House,2016-07-09 15:00,MX,1.234
+0000575,Jon's Village Granja,2015-08-08 09:00,CA,1.285
+0000548,Amanhecer Moon Light Inn,2016-04-29 02:00,CA,1.305
+0000655,Copacabana Hostel,2015-12-22 12:00,CA,1.503
+0000157,Copacabana Jon's Plaza,2015-09-10 10:00,MX,0.922
+0001192,Majestic Highway Spa,2015-12-05 13:00,MX,0.935
+0000281,Tiny Ibiza Hotel,2015-10-05 00:00,CA,1.345
+0000449,Village Highway Motel,2016-02-02 09:00,CA,1.763
+0001132,Elegance Copacabana Posada,2015-09-14 00:00,CA,0.998
+0000900,Vermont Senado Motor Inn,2015-10-12 17:00,MX,1.585
+0000349,Moos' Por Inn,2016-02-04 14:00,US,1.394
+0000288,Eas Side Premier la pensión,2015-10-14 18:00,CA,2.042
+0000006,Pestana Majestic Majestic Boarding House,2016-04-11 14:00,CA,1.611
+0000696,Saionara Highway Spa,2015-10-29 10:00,MX,1.664
+0000032,River Side Mengo Granja,2016-07-25 16:00,CA,1.432
+0000121,Vermont Imperial Hotelo,2016-05-24 00:00,CA,1.751
+0001116,Jon's Grand Casa,2015-11-22 23:00,MX,0.944
+0000580,Sheraton Senado Casino,2016-02-01 22:00,CA,1.624
+0000582,Saionara Casa,2016-03-08 06:00,MX,1.56
+0000361,Senado Big River River Side Posada,2015-10-25 20:00,US,1.486
+0000031,Majestic Upper Side Senado Spa,2015-08-30 06:00,CA,1.48
+0000802,Hyatt Down Town Hotel,2015-08-06 20:00,US,1.088
+0000610,Jon's Moos' Posada,2015-11-23 07:00,CA,0.334
+0001142,Asturias Down Town Casa,2016-04-29 09:00,MX,1.651
+0000912,Down Town Premier Casino,2016-05-23 15:00,MX,1.157
+0001100,Jon's Hotel,2015-10-19 11:00,CA,1.773
+0000650,Grand Asturias Inn,2016-04-14 20:00,MX,1.296
+0000553,Elegance Inn,2016-06-28 02:00,US,1.191
+0000944,Jon's Spa,2016-03-23 13:00,US,1.224
+0000923,Geronimo Hyatt Inn,2016-03-25 19:00,MX,0.933
+0000627,Sheraton Olinda Hotelo,2015-09-08 04:00,CA,1.665
+0001186,Down Town Jon's Hostel,2015-12-25 14:00,CA,1.601
+0000889,Big River Boarding House,2016-07-04 09:00,US,1.102
+0000173,Sheraton Senado Posada,2016-07-12 22:00,MX,1.357
+0000724,Village Elegance Apartments,2016-08-03 03:00,MX,1.187
+cat: Unable to write to output stream.
+cat: Unable to write to output stream.
